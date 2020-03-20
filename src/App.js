@@ -1,32 +1,33 @@
-import React, { useState, useEffect} from 'react';
-import * as txtgen from 'txtgen';
-import { Button } from 'react-bootstrap';
+import React from 'react';
+import Home from './views/Home';
 
-import logo from './logo.svg';
-import './App.css';
+import {
+  Environment,
+  Route,
+  SinglePageApp
+} from "infrastructure-components";
 
-function App() {
-  const [ randomText, setRandomText ] = useState('');
 
-  const handleTextChange = () =>{
-    const _new = txtgen.sentence();
-    if(_new !== randomText)
-      setRandomText(_new);
-  }
+export default (
+  <SinglePageApp
+      stackName = "random-app"
+      buildPath = 'build'
+      region='us-east-1'>
 
-  useEffect(()=>{
-    setRandomText(txtgen.sentence());
-  },[]);
+        <Environment
+            name="dev"
+        />
+      {/* <Environment
+          name="dev"
+          domain="my.domain.com"
+          certArn="arn:aws:acm:us-east-1:************:certificate/********-****-****-****-************"
+      /> */}
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>{randomText}</p>
-        <Button name="Generate Text" onClick={handleTextChange}>Generate Text</Button>
-      </header>
-    </div>
-  );
-}
+      <Route
+          path='/'
+          name='Infrastructure-Components'
+          component={<Home/>}
+      />
 
-export default App;
+
+  </SinglePageApp>);
