@@ -12,7 +12,8 @@
     "react-bootstrap": "^1.0.0-beta.17",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.0",
-    "txtgen": "^2.2.4"
+    "txtgen": "^2.2.4",
+    "typescript": "^3.8.3"
   },
   "scripts": {
     "start": "react-scripts start",
