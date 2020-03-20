@@ -1,23 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
+import * as txtgen from 'txtgen';
+import { Button } from 'react-bootstrap';
+
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const [ randomText, setRandomText ] = useState('');
+
+  const handleTextChange = () =>{
+    const _new = txtgen.sentence();
+    if(_new !== randomText)
+      setRandomText(_new);
+  }
+
+  useEffect(()=>{
+    setRandomText(txtgen.sentence());
+  },[]);
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>{randomText}</p>
+        <Button name="Generate Text" onClick={handleTextChange}>Generate Text</Button>
       </header>
     </div>
   );
