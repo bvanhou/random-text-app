@@ -9,6 +9,7 @@ describe('App', () => {
     const { getByText } = render(<App />);
     const buttonElement = getByText(/Generate Text/i);
     expect(buttonElement).toBeInTheDocument();
+    
   });
 
   it('Button Click Generates new Text', () => {
@@ -16,6 +17,7 @@ describe('App', () => {
     const _prev = wrapper.find('p').text();
     wrapper.find("button").simulate("click");
     expect(wrapper.find('p').text()).not.toEqual(_prev);
+    expect(wrapper).toMatchSnapshot();
   });
 
 });

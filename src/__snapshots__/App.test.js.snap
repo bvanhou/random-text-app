@@ -1,5 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button should render correctly 1`] = `ShallowWrapper {}`;
-
-exports[`button generates new paragraph text 1`] = `ShallowWrapper {}`;
+exports[`App Button Click Generates new Text 1`] = `ReactWrapper {}`;
