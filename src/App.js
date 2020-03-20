@@ -26,7 +26,7 @@ export default (
       <Route
           path='/'
           name='Infrastructure-Components'
-          component={<Home/>}
+          component={Home}
       />
 
 
