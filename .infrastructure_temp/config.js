@@ -194,7 +194,7 @@ function toComment(sourceMap) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _views_Home__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./views/Home */ "./src/views/Home.tsx");
+/* harmony import */ var _views_Home__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./views/Home */ "./src/views/Home.js");
 /* harmony import */ var infrastructure_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! infrastructure-components */ "infrastructure-components");
 /* harmony import */ var infrastructure_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(infrastructure_components__WEBPACK_IMPORTED_MODULE_2__);
 
@@ -209,7 +209,7 @@ __webpack_require__.r(__webpack_exports__);
 }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(infrastructure_components__WEBPACK_IMPORTED_MODULE_2__["Route"], {
   path: "/",
   name: "Infrastructure-Components",
-  component: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_views_Home__WEBPACK_IMPORTED_MODULE_1__["default"], null)
+  component: _views_Home__WEBPACK_IMPORTED_MODULE_1__["default"]
 })));
 
 /***/ }),
@@ -240,10 +240,10 @@ exports.push([module.i, ".App {\n  text-align: center;\n}\n\n.App-logo {\n  heig
 
 /***/ }),
 
-/***/ "./src/views/Home.tsx":
-/*!****************************!*\
-  !*** ./src/views/Home.tsx ***!
-  \****************************/
+/***/ "./src/views/Home.js":
+/*!***************************!*\
+  !*** ./src/views/Home.js ***!
+  \***************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 

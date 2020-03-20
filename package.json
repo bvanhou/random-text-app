@@ -20,8 +20,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy-dev": "scripts deploy src/app.js dev",
-    "random-app": "scripts app src/app.js random-app"
+    "deploy-dev": "scripts deploy src/App.js dev",
+    "random-app": "scripts app src/App.js random-app"
   },
   "eslintConfig": {
     "extends": "react-app"
