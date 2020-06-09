@@ -1,17 +1,26 @@
-version: 2
-jobs:
-  build:
-    working_directory: ~/app
-    docker:
-      - image: circleci/node:8
-    steps:
-      - checkout
-      - run:
-          name: Install Dependencies
-          command: npm i
-      - run:
-          name: Run Tests
-          command: npm test
-      - run:
-          name: Run Dev Deploy
-          command: npm run deploy-dev
+# version: 2
+# jobs:
+#   build:
+#     working_directory: ~/app
+#     docker:
+#       - image: circleci/node:8
+#     steps:
+#       - checkout
+#       - run:
+#           name: Install Dependencies
+#           command: npm i
+#       - run:
+#           name: Run Tests
+#           command: npm test
+#       - run:
+#           name: Run Dev Deploy
+#           command: npm run deploy-dev
+version: 2.1
+
+orbs:
+    hello: circleci/hello-build@0.0.5
+
+workflows:
+    "Hello Workflow":
+        jobs:
+          - hello/hello-build
