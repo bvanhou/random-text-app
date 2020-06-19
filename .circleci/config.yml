@@ -8,6 +8,8 @@ jobs:
     - run:
         command: ssh-add -D
     - run:
+        command: ssh-add -l
+    - run:
         command: echo "Hello ${CIRCLE_USERNAME}"
     - run:
         command: |-
