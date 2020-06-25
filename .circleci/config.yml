@@ -1,62 +1,18 @@
-# Orb 'circleci/hello-build@0.0.5' resolved to 'circleci/hello-build@0.0.5'
-version: 2
+version: 2.1
 jobs:
-  hello/hello-build:
+  build:
     docker:
-    - image: circleci/buildpack-deps:curl-browsers
+      - image: circleci/golang:1.13-alpine
     steps:
-    # - run:
-    #     command: ssh-add -D
-    - run:
-        command: ssh-add -l
-    - run:
-        command: echo "Hello ${CIRCLE_USERNAME}"
-    - run:
-        command: |-
-          echo "TRIGGERER: ${CIRCLE_USERNAME}"
-          echo "BUILD_NUMBER: ${CIRCLE_BUILD_NUM}"
-          echo "BUILD_URL: ${CIRCLE_BUILD_URL}"
-          echo "BRANCH: ${CIRCLE_BRANCH}"
-          echo "RUNNING JOB: ${CIRCLE_JOB}"
-          echo "JOB PARALLELISM: ${CIRCLE_NODE_TOTAL}"
-          echo "CIRCLE_REPOSITORY_URL: ${CIRCLE_REPOSITORY_URL}"
-        name: Show some of the CircleCI runtime env vars
-    - run:
-        command: |-
-          echo "uname:" $(uname -a)
-          echo "arch: " $(arch)
-        name: Show system information
-workflows:
-  Hello Workflow:
-    jobs:
-    - hello/hello-build
-  version: 2
+      - checkout
+      # ... steps for building/testing app ...
 
-# Original config.yml file:
-# # version: 2
-# # jobs:
-# #   build:
-# #     working_directory: ~/app
-# #     docker:
-# #       - image: circleci/node:8
-# #     steps:
-# #       - checkout
-# #       - run:
-# #           name: Install Dependencies
-# #           command: npm i
-# #       - run:
-# #           name: Run Tests
-# #           command: npm test
-# #       - run:
-# #           name: Run Dev Deploy
-# #           command: npm run deploy-dev
-# 
-# version: 2.1
-# 
-# orbs:
-#     hello: circleci/hello-build@0.0.5
-# 
-# workflows:
-#     \"Hello Workflow\":
-#         jobs:
-#           - hello/hello-build
+      - setup_remote_docker:
+          docker_layer_caching: true
+
+      # build and push Docker image
+      - run: |
+          TAG=0.1.$CIRCLE_BUILD_NUM
+          docker build -t CircleCI-Public/circleci-demo-docker:$TAG .
+          echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+          docker push CircleCI-Public/circleci-demo-docker:$TAG
