@@ -9,6 +9,14 @@ jobs:
         docker_layer_caching: true
     - run:
         command: |-
+          cat /etc/default/docker
+    - run:
+        command: |-
+          cat /etc/systemd/system/docker.service.d/http-proxy.conf
+    - run:
+        command: |-
+          cat /etc/default/docker
+          cat /etc/systemd/system/docker.service.d/http-proxy.conf
           echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
 workflows:
   version: 2
