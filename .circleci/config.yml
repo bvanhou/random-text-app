@@ -1,28 +1,28 @@
-version: 2
-jobs:
-  build:
-    docker:
-    - image: docker:19.03.8
-    steps:
-    - checkout
-    - setup_remote_docker:
-        docker_layer_caching: true
-    - run:
-        command: |-
-          cat /etc/default/docker
-    - run:
-        command: |-
-          cat /etc/systemd/system/docker.service.d/http-proxy.conf
-    - run:
-        command: |-
-          cat /etc/default/docker
-          cat /etc/systemd/system/docker.service.d/http-proxy.conf
-          echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-workflows:
-  version: 2
-  workflow:
-    jobs:
-    - build
+# version: 2
+# jobs:
+#   build:
+#     docker:
+#     - image: docker:19.03.8
+#     steps:
+#     - checkout
+#     - setup_remote_docker:
+#         docker_layer_caching: true
+#     - run:
+#         command: |-
+#           cat /etc/default/docker
+#     - run:
+#         command: |-
+#           cat /etc/systemd/system/docker.service.d/http-proxy.conf
+#     - run:
+#         command: |-
+#           cat /etc/default/docker
+#           cat /etc/systemd/system/docker.service.d/http-proxy.conf
+#           echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+# workflows:
+#   version: 2
+#   workflow:
+#     jobs:
+#     - build
 
 
 # version: 2
@@ -49,24 +49,24 @@ workflows:
 #   command: ./run.sh commands/test.sh
 
 # Original config.yml file:
-# # version: 2
-# # jobs:
-# #   build:
-# #     working_directory: ~/app
-# #     docker:
-# #       - image: circleci/node:8
-# #     steps:
-# #       - checkout
-# #       - run:
-# #           name: Install Dependencies
-# #           command: npm i
-# #       - run:
-# #           name: Run Tests
-# #           command: npm test
-# #       - run:
-# #           name: Run Dev Deploy
-# #           command: npm run deploy-dev
-# 
+version: 2
+jobs:
+  build:
+    working_directory: ~/app
+    machine: true
+    parallelism: 100
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies EChod
+          command: echo 'Hello Chris Black How are YOU?'
+      # - run:
+      #     name: Run Tests
+      #     command: npm test
+      # - run:
+      #     name: Run Dev Deploy
+      #     command: npm run deploy-dev
+
 # version: 2.1
 # jobs:
 #   build:
