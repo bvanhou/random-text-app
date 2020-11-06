@@ -58,11 +58,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install Dependencies EChod
-          command: echo 'Hello Chris Black How are YOU?'
-      # - run:
-      #     name: Run Tests
-      #     command: npm test
+          name: Install Dependencies
+          command: npm i 
+      - run:
+          name: Run Tests
+          command: npm test
       # - run:
       #     name: Run Dev Deploy
       #     command: npm run deploy-dev
