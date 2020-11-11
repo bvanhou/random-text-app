@@ -1,87 +1,15 @@
-# version: 2
-# jobs:
-#   build:
-#     docker:
-#     - image: docker:19.03.8
-#     steps:
-#     - checkout
-#     - setup_remote_docker:
-#         docker_layer_caching: true
-#     - run:
-#         command: |-
-#           cat /etc/default/docker
-#     - run:
-#         command: |-
-#           cat /etc/systemd/system/docker.service.d/http-proxy.conf
-#     - run:
-#         command: |-
-#           cat /etc/default/docker
-#           cat /etc/systemd/system/docker.service.d/http-proxy.conf
-#           echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-# workflows:
-#   version: 2
-#   workflow:
-#     jobs:
-#     - build
-
-
-# version: 2
-# jobs:
-# build:
-#   docker:
-#   - image: docker:19.03.8
-#   steps:
-#   - checkout
-#   - setup_remote_docker:
-#   docker_layer_caching: true
-#     - run:
-#     name: List contents of cwd
-#     command: docker pull ubuntu:18.04
-#   - run:
-#   name: Build Docker Container
-#   command: |
-#   PROJECT_ROOT="$(pwd)"
-#   source "${PROJECT_ROOT}/VERSION"
-#   DOCKER_DEV_SHA=$(cat Dockerfile.dev "${PROJECT_ROOT}/commands/bin/ini2env.py" | sha256sum | awk '{ print substr($1, 0, 16) }')
-#   docker build "${PROJECT_ROOT}" -f Dockerfile.dev -t "atlas:${ATLAS_VERSION}-dev.${DOCKER_DEV_SHA}"
-#   - run:
-#   name: Load Docker image layer cache
-#   command: ./run.sh commands/test.sh
-
-# Original config.yml file:
-version: 2
+###################################################
+# CircleCI Configs
+###################################################
+version: 2.1
+orbs:
+  win: circleci/windows@2.4.0
 jobs:
   build:
-    working_directory: ~/app
-    machine: true
-    parallelism: 100
+    executor: win/gpu-nvidia
     steps:
-      - checkout
+      - run: '&"C:\Program Files\NVIDIA Corporation\NVSMI\nvidia-smi.exe"'
       - run:
-          name: Install Dependencies
-          command: npm i 
-      - run:
-          name: Run Tests
-          command: npm test
-      # - run:
-      #     name: Run Dev Deploy
-      #     command: npm run deploy-dev
-
-# version: 2.1
-# jobs:
-#   build:
-#     docker:
-#       - image: circleci/golang:1.13-alpine
-#     steps:
-#       - checkout
-#       # ... steps for building/testing app ...
-# 
-#       - setup_remote_docker:
-#           docker_layer_caching: true
-# 
-#       # build and push Docker image
-#       - run: |
-#           TAG=0.1.$CIRCLE_BUILD_NUM
-#           docker build -t CircleCI-Public/circleci-demo-docker:$TAG .
-#           echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-#           docker push CircleCI-Public/circleci-demo-docker:$TAG
+          name: Set Resolution to 1920x1080
+          shell: powershell.exe
+          command: Set-DisplayResolution -Width 1920 -Height 1080 -Force
