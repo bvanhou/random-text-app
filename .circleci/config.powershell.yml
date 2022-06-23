@@ -1,0 +1,15 @@
+# ###################################################
+# # CircleCI Configs
+# ###################################################
+# version: 2.1
+# orbs:
+#   win: circleci/windows@2.4.0
+# jobs:
+#   build:
+#     executor: win/gpu-nvidia
+#     steps:
+#       - run: '&"C:\Program Files\NVIDIA Corporation\NVSMI\nvidia-smi.exe"'
+#       - run:
+#           name: Set Resolution to 1920x1080
+#           shell: powershell.exe
+#           command: Set-DisplayResolution -Width 1920 -Height 1080 -Force
