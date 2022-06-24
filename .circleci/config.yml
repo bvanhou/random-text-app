@@ -3,12 +3,15 @@ jobs:
   build:
     working_directory: ~/app
     docker:
-      - image: circleci/node:8
+      - image: circleci/node:10
     steps:
       - checkout
       - run:
           name: Install Dependencies
           command: npm i
+      - run:
+          name: Update Dependency
+          command: npx browserslist --update-db
       - run:
           name: Run Tests
           command: npm test
